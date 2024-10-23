@@ -1,0 +1,10 @@
+{
+    "name": "maxim-run",
+    "version": "1",
+    "description": "GitHub Action to run a test on Maxim Cloud",
+    "main": "index.js",
+    "dependencies": {
+      "@actions/core": "^1.6.0",
+      "axios": "^0.21.1"
+    }
+  }
