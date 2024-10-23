@@ -1,0 +1,15 @@
+name: 'Run test on Maxim Cloud'
+description: 'Runs a test on Maxim Cloud using an API key.'
+
+inputs:
+  api-key:
+    description: 'API key for Maxim Cloud'
+    required: true
+
+runs:
+  using: 'node16'
+  main: 'index.js'
+
+branding:
+  icon: 'cpu'
+  color: 'orange'
