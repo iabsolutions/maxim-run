@@ -38,7 +38,8 @@ async function run() {
       throw new Error(`Request failed with status code: ${response.status}`);
     }
 
-    if (response.data !== 'success') {
+    // Check for success: {"success":true,"testId":123456}
+    if (!response.data.success) {
       throw new Error(`Request failed with message: ${response.data}`);
     }
 
