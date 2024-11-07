@@ -4,6 +4,9 @@ const axios = require('axios');
 async function run() {
   try {
 
+    // Run URL
+    const runUrl = "https://www.maximcloud.io/api/run-test"
+
     // Post body
     var body = {};
 
@@ -18,8 +21,14 @@ async function run() {
       throw new Error('API key is required');
     }
 
+    // Check if ngrok URUL is provided
+    const ngrokUrl = core.getInput('ngrok-url');
+    if (ngrokUrl) {
+      runUrl = ngrokUrl;
+    }
+
     // Make a request to Maxim Cloud API
-    const response = await axios.post('https://www.maximcloud.io/api/run-test?api_key=' + apiKey, body);
+    const response = await axios.post(runUrl + '?api_key=' + apiKey, body);
 
     // Check for success response
     if (response.status !== 200) {
