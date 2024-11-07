@@ -45,7 +45,7 @@ async function run() {
 
     // Log and output the result
     console.log(`Test triggered successfully: ${response.data}`);
-    core.setOutput('result', response.data);
+    core.setOutput('result', JSON.stringify(response.data));
     core.setOutput('success', true);
     core.setOutput('message', 'Test triggered successfully');
 
