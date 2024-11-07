@@ -30585,7 +30585,7 @@ const axios = __nccwpck_require__(6545);
 async function run() {
   try {
     // Base URL for the API
-    let runUrl = "https://www.maximcloud.io/api/run-test";
+    let runUrl = "https://www.maximcloud.io";
 
     // Post body object
     const body = {};
@@ -30612,7 +30612,7 @@ async function run() {
     }
 
     // Make a POST request to Maxim Cloud API
-    const response = await axios.post(`${runUrl}?api_key=${apiKey}`, body);
+    const response = await axios.post(`${runUrl}/api/run-test?api_key=${apiKey}`, body);
 
     // Check for success response
     if (response.status !== 200) {
