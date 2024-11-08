@@ -30616,22 +30616,22 @@ async function run() {
 
     // Check for success response
     if (response.status !== 200) {
-      throw new Error(`Request failed with status code: ${response.status}`);
+      throw new Error(`Request failed with status code: ${JSON.stringify(response.status)}`);
     }
 
     // Check for success: {"success":true,"testId":123456}
     if (!response.data.success) {
-      throw new Error(`Request failed with message: ${response.data}`);
+      throw new Error(`Request failed with message: ${JSON.stringify(response.data)}`);
     }
 
     // Log and output the result
-    console.log(`Test triggered successfully: ${response.data}`);
+    console.log(`Test triggered successfully: ${JSON.stringify(response.data)}`);
     core.setOutput('result', JSON.stringify(response.data));
     core.setOutput('success', true);
     core.setOutput('message', 'Test triggered successfully');
 
   } catch (error) {
-    core.setFailed(`Action failed with error: ${error.message}`);
+    core.setFailed(`Action failed with error: ${JSON.stringify(error)}`);
   }
 }
 
