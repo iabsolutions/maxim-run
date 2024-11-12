@@ -2,11 +2,11 @@ name: 'Run test on Maxim Cloud'
 description: 'Runs a test on Maxim Cloud using an API key.'
 
 inputs:
-  api-key:
+  api_key:
     description: 'API key for Maxim Cloud'
     required: true
 
-  ngrok-url:
+  ngrok_url:
     description: 'URL of ngrok tunnel'
     required: false
 
@@ -20,6 +20,10 @@ inputs:
 
   pat:
     description: 'Personal access token'
+    required: false
+
+  replicas:
+    description: 'Number of replicas'
     required: false
 
 runs:
