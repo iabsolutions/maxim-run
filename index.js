@@ -10,7 +10,7 @@ async function run() {
     const body = {};
 
     // Retrieve all known inputs and add them to the body
-    const inputs = ['repository', 'branch', 'pat', 'ngrok-url', 'api-key', 'replicas'];
+    const inputs = ['repository', 'branch', 'pat', 'ngrok_url', 'api_key', 'replicas'];
     for (const inputName of inputs) {
       const value = core.getInput(inputName);
       if (value) {
@@ -19,13 +19,13 @@ async function run() {
     }
 
     // Get the API key
-    const apiKey = core.getInput('api-key');
+    const apiKey = core.getInput('api_key');
     if (!apiKey) {
       throw new Error('API key is required');
     }
 
     // Check if ngrok URL is provided and override the default URL
-    const ngrokUrl = core.getInput('ngrok-url');
+    const ngrokUrl = core.getInput('ngrok_url');
     if (ngrokUrl) {
       runUrl = ngrokUrl;
     }
