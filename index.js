@@ -18,6 +18,21 @@ async function run() {
       }
     }
 
+    // Get test environment variables
+    const testEnv = process.env['TEST_ENV'] || '';
+    const relevantTestEnvVars = testEnv
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.includes('='))
+      .reduce((acc, line) => {
+        const [key, value] = line.split('=');
+        acc[key] = value;
+        return acc;
+      }, {});
+
+    // Add test environment variables to the body
+    body['testEnv'] = relevantTestEnvVars;
+
     // Get the API key
     const apiKey = core.getInput('api_key');
     if (!apiKey) {
