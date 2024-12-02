@@ -26,6 +26,10 @@ inputs:
     description: 'Number of replicas'
     required: false
 
+  k6_start_file:
+    description: 'K6 start file'
+    required: false
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

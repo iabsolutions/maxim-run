@@ -30591,7 +30591,7 @@ async function run() {
     const body = {};
 
     // Retrieve all known inputs and add them to the body
-    const inputs = ['repository', 'branch', 'pat', 'ngrok_url', 'api_key', 'replicas'];
+    const inputs = ['repository', 'branch', 'pat', 'ngrok_url', 'api_key', 'replicas', 'k6_start_file'];
     for (const inputName of inputs) {
       const value = core.getInput(inputName);
       if (value) {
