@@ -30662,19 +30662,23 @@ async function run() {
       await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds before checking again
     }
 
+    // Coonsole outputs
+    console.log(`NFR status: ${response.data.nfr_status}`);
+    console.log(`Report URL: ${runUrl}/tests/${response.data.testId}`);
+
     // Output the result
-    // core.setOutput('Debug', JSON.stringify(statusResponse.data));
-    // core.setOutput('Test ID', JSON.stringify(statusResponse.data.testId));
-    // core.setOutput('Result URL', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
-    // core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
-    // core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
+    core.setOutput('debug', JSON.stringify(statusResponse.data));
+    core.setOutput('testId', JSON.stringify(statusResponse.data.testId));
+    core.setOutput('resultUrl', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
+    core.setOutput('testStatus', JSON.stringify(statusResponse.data.test_status));
+    core.setOutput('nfrStatus', JSON.stringify(statusResponse.data.nfr_status));
     core.setOutput('success', JSON.stringify(response.data.success));
 
     // Log the result
     statusResponse = "success";
-    // if (!statusResponse.data.success) {
-    //   throw new Error(`Test failed with message: ${JSON.stringify(statusResponse.data)}`);
-    // }
+    if (!response.data.success) {
+      throw new Error(`Test failed`);
+    }
 
     // Exit with success
     process.exit(0);
