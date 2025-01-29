@@ -60,9 +60,22 @@ async function run() {
 
     // Log and output the result
     console.log(`Test triggered successfully: ${JSON.stringify(response.data)}`);
-    core.setOutput('result', JSON.stringify(response.data));
-    core.setOutput('success', true);
-    core.setOutput('message', 'Test triggered successfully');
+    console.log(`Test ID: ${response.data.testId}`);
+    console.log(`Test URL: ${runUrl}/test/${response.data.testId}`);
+
+    // Wait until the test is completed
+    let testStatus = 'REQUESTED';
+    while (testStatus !== 'COMPLETED') {
+      const statusResponse = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
+      testStatus = statusResponse.data.status;
+      console.log(`Test status: ${testStatus}`);
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds before checking again
+    }
+
+    // Output the result
+    core.setOutput('result', JSON.stringify(statusResponse.data));
+    core.setOutput('success', JSON.stringify(statusResponse.data.success));
+    core.setOutput('message', JSON.stringify(statusResponse.data.message));
 
   } catch (error) {
     core.setFailed(`Action failed with error: ${JSON.stringify(error)}`);
