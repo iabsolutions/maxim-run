@@ -30631,7 +30631,7 @@ async function run() {
     }
 
     // Make a POST request to Maxim Cloud API
-    const response = await axios.post(`${runUrl}/api/run-test?api_key=${apiKey}`, body);
+    let response = await axios.post(`${runUrl}/api/run-test?api_key=${apiKey}`, body);
 
     // Check for success response
     if (response.status !== 200) {
