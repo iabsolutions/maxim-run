@@ -65,12 +65,15 @@ async function run() {
 
     // Wait until the test is completed
     let testStatus = 'REQUESTED';
+    let updatedStatus = '';
     while (testStatus !== 'COMPLETED') {
       const statusResponse = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
-      testStatus = statusResponse.data.test_status;
+      updatedStatus = statusResponse.data.test_status;
       // Log the test status only if it has changed
-
-      console.log(`Test status: ${testStatus}`);
+      if (updatedStatus !== testStatus) {
+        console.log(`Test status: ${updatedStatus}`);
+        testStatus = updatedStatus;
+      }
       await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds before checking again
     }
 
@@ -86,7 +89,7 @@ async function run() {
     process.exit(0);
 
   } catch (error) {
-    core.setFailed(`Action failed with error: ${JSON.stringify(error)}`);
+    core.setFailed(error.message);
   }
 }
 
