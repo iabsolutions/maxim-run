@@ -75,11 +75,11 @@ async function run() {
     }
 
     // Output the result
-    core.setOutput('Debug', JSON.stringify(statusResponse.data));
-    core.setOutput('Test ID', JSON.stringify(statusResponse.data.testId));
-    core.setOutput('Result URL', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
-    core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
-    core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
+    // core.setOutput('Debug', JSON.stringify(statusResponse.data));
+    // core.setOutput('Test ID', JSON.stringify(statusResponse.data.testId));
+    // core.setOutput('Result URL', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
+    // core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
+    // core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
     core.setOutput('success', JSON.stringify(statusResponse.data.success));
 
     // Exit with succes
