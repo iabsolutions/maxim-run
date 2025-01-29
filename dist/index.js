@@ -30659,7 +30659,7 @@ async function run() {
     core.setOutput('Result URL', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
     core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
     core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
-    // core.setOutput('success', JSON.stringify(statusResponse.data.success));
+    core.setOutput('success', JSON.stringify(statusResponse.data.success));
 
   } catch (error) {
     core.setFailed(`Action failed with error: ${JSON.stringify(error)}`);
