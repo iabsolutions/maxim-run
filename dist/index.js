@@ -30652,8 +30652,8 @@ async function run() {
     let testStatus = 'REQUESTED';
     let updatedStatus = '';
     while (testStatus !== 'COMPLETED') {
-      const statusResponse = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
-      updatedStatus = statusResponse.data.test_status;
+      response = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
+      updatedStatus = response.data.test_status;
       // Log the test status only if it has changed
       if (updatedStatus !== testStatus) {
         console.log(`Test status: ${updatedStatus}`);
@@ -30668,7 +30668,7 @@ async function run() {
     // core.setOutput('Result URL', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
     // core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
     // core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
-    core.setOutput('success', JSON.stringify(statusResponse.data.success));
+    core.setOutput('success', JSON.stringify(response.data.success));
 
     // Log the result
     statusResponse = "success";
