@@ -3,6 +3,10 @@ const axios = require('axios');
 
 async function run() {
   try {
+
+    // Initialize variables
+    let statusResponse;
+
     // Base URL for the API
     let runUrl = "https://www.maximcloud.io";
 
@@ -85,7 +89,13 @@ async function run() {
     // core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
     core.setOutput('success', JSON.stringify(statusResponse.data.success));
 
-    // Exit with succes
+    // Log the result
+    statusResponse = "success";
+    if (!statusResponse.data.success) {
+      throw new Error(`Test failed with message: ${JSON.stringify(statusResponse.data)}`);
+    }
+
+    // Exit with success
     process.exit(0);
 
   } catch (error) {
