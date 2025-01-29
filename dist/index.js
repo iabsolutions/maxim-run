@@ -30667,11 +30667,11 @@ async function run() {
     console.log(`Report URL: ${runUrl}/tests/${response.data.testId}`);
 
     // Output the result
-    core.setOutput('debug', JSON.stringify(statusResponse.data));
-    core.setOutput('testId', JSON.stringify(statusResponse.data.testId));
-    core.setOutput('resultUrl', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
-    core.setOutput('testStatus', JSON.stringify(statusResponse.data.test_status));
-    core.setOutput('nfrStatus', JSON.stringify(statusResponse.data.nfr_status));
+    core.setOutput('debug', JSON.stringify(response.data));
+    core.setOutput('testId', JSON.stringify(response.data.testId));
+    core.setOutput('resultUrl', JSON.stringify(runUrl + '/tests/' + response.data.testId));
+    core.setOutput('testStatus', JSON.stringify(response.data.test_status));
+    core.setOutput('nfrStatus', JSON.stringify(response.data.nfr_status));
     core.setOutput('success', JSON.stringify(response.data.success));
 
     // Log the result
