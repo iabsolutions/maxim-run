@@ -30640,7 +30640,7 @@ async function run() {
     }
 
     // Log and output the result
-    console.log(`Test triggered successfully: ${JSON.stringify(response.data)}`);
+    // console.log(`Test triggered successfully: ${JSON.stringify(response.data)}`);
     console.log(`Test ID: ${response.data.testId}`);
     console.log(`Test URL: ${runUrl}/tests/${response.data.testId}`);
 
@@ -30649,6 +30649,8 @@ async function run() {
     while (testStatus !== 'COMPLETED') {
       const statusResponse = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
       testStatus = statusResponse.data.test_status;
+      // Log the test status only if it has changed
+
       console.log(`Test status: ${testStatus}`);
       await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds before checking again
     }
@@ -30660,6 +30662,9 @@ async function run() {
     core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
     core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
     core.setOutput('success', JSON.stringify(statusResponse.data.success));
+
+    // Exit with succes
+    process.exit(0);
 
   } catch (error) {
     core.setFailed(`Action failed with error: ${JSON.stringify(error)}`);
