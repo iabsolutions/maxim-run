@@ -30642,7 +30642,7 @@ async function run() {
     // Log and output the result
     console.log(`Test triggered successfully: ${JSON.stringify(response.data)}`);
     console.log(`Test ID: ${response.data.testId}`);
-    console.log(`Test URL: ${runUrl}/test/${response.data.testId}`);
+    console.log(`Test URL: ${runUrl}/tests/${response.data.testId}`);
 
     // Wait until the test is completed
     let testStatus = 'REQUESTED';
