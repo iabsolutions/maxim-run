@@ -67,15 +67,18 @@ async function run() {
     let testStatus = 'REQUESTED';
     while (testStatus !== 'COMPLETED') {
       const statusResponse = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
-      testStatus = statusResponse.data.status;
+      testStatus = statusResponse.data.test_status;
       console.log(`Test status: ${testStatus}`);
       await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds before checking again
     }
 
     // Output the result
-    core.setOutput('result', JSON.stringify(statusResponse.data));
-    core.setOutput('success', JSON.stringify(statusResponse.data.success));
-    core.setOutput('message', JSON.stringify(statusResponse.data.message));
+    core.setOutput('Debug', JSON.stringify(statusResponse.data));
+    core.setOutput('Test ID', JSON.stringify(statusResponse.data.testId));
+    core.setOutput('Result URL', JSON.stringify(runUrl + '/tests/' + statusResponse.data.testId));
+    core.setOutput('Test Status', JSON.stringify(statusResponse.data.test_status));
+    core.setOutput('NFR Status', JSON.stringify(statusResponse.data.nfr_status));
+    // core.setOutput('success', JSON.stringify(statusResponse.data.success));
 
   } catch (error) {
     core.setFailed(`Action failed with error: ${JSON.stringify(error)}`);
