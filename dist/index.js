@@ -30602,6 +30602,9 @@ async function run() {
     console.log("Github Action Run Number: " + process.env.GITHUB_RUN_NUMBER);
     console.log("Github Action Repo URL: " + process.env.GITHUB_REPOSITORY_URL);
 
+    // Log branch too
+    console.log(`Branch: ${process.env.GITHUB_REF}`);
+
     // Initialize variables
     let statusResponse;
 
