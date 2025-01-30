@@ -30595,7 +30595,7 @@ async function run() {
     const body = {};
 
     // Retrieve all known inputs and add them to the body
-    const inputs = ['repository', 'branch', 'pat', 'ngrok_url', 'api_key', 'replicas', 'k6_start_file'];
+    const inputs = ['repository', 'branch', 'pat', 'ngrok-url', 'api-key', 'replicas', 'start-file', 'directory'];
     for (const inputName of inputs) {
       const value = core.getInput(inputName);
       if (value) {
@@ -30619,19 +30619,19 @@ async function run() {
     body['testEnv'] = relevantTestEnvVars;
 
     // Get the API key
-    const apiKey = core.getInput('api_key');
+    const apiKey = core.getInput('api-key');
     if (!apiKey) {
       throw new Error('API key is required');
     }
 
     // Check if ngrok URL is provided and override the default URL
-    const ngrokUrl = core.getInput('ngrok_url');
+    const ngrokUrl = core.getInput('ngrok-url');
     if (ngrokUrl) {
       runUrl = ngrokUrl;
     }
 
     // Make a POST request to Maxim Cloud API
-    let response = await axios.post(`${runUrl}/api/run-test?api_key=${apiKey}`, body);
+    let response = await axios.post(`${runUrl}/api/run-test?api-key=${apiKey}`, body);
 
     // Check for success response
     if (response.status !== 200) {
@@ -30652,7 +30652,7 @@ async function run() {
     let testStatus = 'REQUESTED';
     let updatedStatus = '';
     while (testStatus !== 'COMPLETED') {
-      response = await axios.get(`${runUrl}/api/test-status?api_key=${apiKey}&testId=${response.data.testId}`);
+      response = await axios.get(`${runUrl}/api/test-status?api-key=${apiKey}&testId=${response.data.testId}`);
       updatedStatus = response.data.test_status;
       // Log the test status only if it has changed
       if (updatedStatus !== testStatus) {

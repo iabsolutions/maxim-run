@@ -2,11 +2,11 @@ name: 'Run test on Maxim Cloud'
 description: 'Runs a test on Maxim Cloud using an API key.'
 
 inputs:
-  api_key:
+  api-key:
     description: 'API key for Maxim Cloud'
     required: true
 
-  ngrok_url:
+  ngrok-url:
     description: 'URL of ngrok tunnel'
     required: false
 
@@ -26,8 +26,12 @@ inputs:
     description: 'Number of replicas'
     required: false
 
-  k6_start_file:
-    description: 'K6 start file'
+  start-file:
+    description: 'Test start file'
+    required: false
+
+  directory:
+    description: 'Directory the test is in'
     required: false
 
 runs:
