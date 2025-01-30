@@ -30585,6 +30585,9 @@ const axios = __nccwpck_require__(6545);
 async function run() {
   try {
 
+    // Log all env variables
+    console.log(`Environment variables: ${JSON.stringify(process.env)}`);
+
     // Initialize variables
     let statusResponse;
 

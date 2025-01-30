@@ -4,6 +4,9 @@ const axios = require('axios');
 async function run() {
   try {
 
+    // Log all env variables
+    console.log(`Environment variables: ${JSON.stringify(process.env)}`);
+
     // Initialize variables
     let statusResponse;
 
