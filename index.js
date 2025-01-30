@@ -18,7 +18,7 @@ async function run() {
 
     // Post body object
     const body = {
-      repository: process.env.GITHUB_REPOSITORY,
+      repository: `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}.git`,
       branch: process.env.GITHUB_REF,
       pat: process.env.GITHUB_TOKEN
     };
