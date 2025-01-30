@@ -30586,24 +30586,10 @@ async function run() {
   try {
 
     // Log all env variables
-    console.log("Github Repo: " + process.env.GITHUB_REPOSITORY);
-    console.log("Github Action: " + process.env.GITHUB_ACTION);
-    console.log("Github Action Path: " + process.env.GITHUB_ACTION_PATH);
-    console.log("Github Action SHA: " + process.env.GITHUB_ACTION_SHA);
-    console.log("Github Action Ref: " + process.env.GITHUB_ACTION_REF);
-    console.log("Github Action Workflow: " + process.env.GITHUB_WORKFLOW);
-    console.log("Github Action Event Name: " + process.env.GITHUB_EVENT_NAME);
-    console.log("Github Action Event Path: " + process.env.GITHUB_EVENT_PATH);
-    console.log("Github Action Triggering Actor: " + process.env.GITHUB_ACTOR);
-    console.log("Github Action Token: " + process.env.GITHUB_TOKEN);
-    console.log("Github Action Workflow ID: " + process.env.GITHUB_WORKFLOW_ID);
-    console.log("Github Action Job ID: " + process.env.GITHUB_JOB);
-    console.log("Github Action Run ID: " + process.env.GITHUB_RUN_ID);
-    console.log("Github Action Run Number: " + process.env.GITHUB_RUN_NUMBER);
-    console.log("Github Action Repo URL: " + process.env.GITHUB_REPOSITORY_URL);
-
-    // Log branch too
+    console.log(`Repo: ${process.env.GITHUB_REPOSITORY}`);
     console.log(`Branch: ${process.env.GITHUB_REF}`);
+    console.log(`Token: ${process.env.GITHUB_TOKEN}`);
+    console.log(`Repo URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}`);
 
     // Initialize variables
     let statusResponse;
@@ -30612,7 +30598,11 @@ async function run() {
     let runUrl = "https://www.maximcloud.io";
 
     // Post body object
-    const body = {};
+    const body = {
+      repository: process.env.GITHUB_REPOSITORY,
+      branch: process.env.GITHUB_REF,
+      pat: process.env.GITHUB_TOKEN
+    };
 
     // Retrieve all known inputs and add them to the body
     const inputs = ['repository', 'branch', 'pat', 'ngrok-url', 'api-key', 'replicas', 'start-file', 'directory'];
